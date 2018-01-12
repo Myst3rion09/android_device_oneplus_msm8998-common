@@ -227,7 +227,6 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
     android.hidl.manager@1.0-java
 
 # Init
@@ -263,10 +262,6 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service \
     lights.msm8998
-
-# LiveDisplay native
-PRODUCT_PACKAGES += \
-    libjni_livedisplay
 
 # Media
 PRODUCT_COPY_FILES += \

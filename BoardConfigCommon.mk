@@ -60,6 +60,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_USES_UEFI := true
 TARGET_USES_64_BIT_BINDER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048
@@ -165,7 +166,6 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-WITH_LINEAGE_CHARGER := false
 
 # CNE and DPM
 BOARD_USES_QCNE := true
@@ -209,7 +209,7 @@ endif
 
 # GPS
 TARGET_NO_RPC := true
-USE_DEVICE_SPECIFIC_GPS := true
+USING_DEVICE_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 
 # HIDL
@@ -227,9 +227,6 @@ TARGET_PROVIDES_KEYMASTER := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
-
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += $(PLATFORM_PATH)/lineagehw
 
 # NFC
 BOARD_NFC_CHIPSET := PN553

@@ -360,6 +360,11 @@ on boot
     # Fingerprint GOODIX
     chmod 0666 /dev/goodix_fp
 
+    # Load WLAN driver, to satisfy wificond
+    insmod /system/lib/modules/wlan.ko
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+    setprop wlan.driver.status "ok"
+
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_completed
     swapon_all /vendor/etc/fstab.qcom

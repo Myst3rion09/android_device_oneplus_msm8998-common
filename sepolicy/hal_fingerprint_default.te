@@ -5,7 +5,6 @@ allow hal_fingerprint_default sysfs_fpc_key:file { rw_file_perms };
 allow hal_fingerprint_default sysfs_fpc_irq:file { rw_file_perms };
 allow hal_fingerprint_default sysfs_fpc_screen:file { rw_file_perms };
 allow hal_fingerprint_default tee_device:chr_file { rw_file_perms };
-allow hal_fingerprint_default servicemanager:binder { call transfer };
 allow hal_fingerprint_default self:netlink_socket create_socket_perms_no_ioctl;
 allow hal_fingerprint_default fingerprint_service:service_manager { find };
 allow hal_fingerprint_default power_service:service_manager { find };
@@ -13,5 +12,6 @@ allow hal_fingerprint_default fingerprintd_data_file:file { open rw_file_perms }
 
 binder_call(system_app, hal_fingerprint_default);
 binder_call(hal_fingerprint_default, system_app);
+binder_call(hal_fingerprint_default, servicemanager)
 
 file_type_auto_trans(hal_fingerprint_default, system_data_file, fingerprintd_data_file);

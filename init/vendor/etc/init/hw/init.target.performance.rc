@@ -73,6 +73,9 @@ on property:sys.boot_completed=1
     write /sys/block/sda/queue/nr_requests 128
     write /sys/block/sda/queue/iostats 1
 
+    # Treat storage as non-rotational
+    write /sys/block/sda/queue/rotational 0
+
     # Enable UFS powersaving
     write /sys/devices/soc/1da4000.ufshc/clkscale_enable 1
     write /sys/devices/soc/1da4000.ufshc/clkgate_enable 1
@@ -183,6 +186,9 @@ on property:sys.boot_completed=1
     
     # Set BFQ I/O scheduler
     setprop sys.io.scheduler "maple"
+
+    # Set Vibration
+    write /sys/class/timed_output/vibrator/vtg_level 1850
 
     # Is IOP even still a thing?
     start iop

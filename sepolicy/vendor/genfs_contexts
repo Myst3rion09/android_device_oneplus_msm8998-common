@@ -1,10 +1,18 @@
-genfscon proc /touchpanel              u:object_r:proc_touchpanel:s0
-genfscon proc /s1302                   u:object_r:proc_touchpanel:s0
-genfscon proc /tri-state-key           u:object_r:proc_touchpanel:s0
+genfscon proc /touchpanel                           u:object_r:proc_touchpanel:s0
+genfscon proc /s1302                                u:object_r:proc_touchpanel:s0
+genfscon proc /tri-state-key                        u:object_r:proc_touchpanel:s0
 
-genfscon debugfs /p2p0/power_stats     u:object_r:debugfs_power_stats:s0
-genfscon debugfs /wlan0/power_stats    u:object_r:debugfs_power_stats:s0
+genfscon debugfs /p2p0/power_stats                  u:object_r:debugfs_power_stats:s0
+genfscon debugfs /wlan0/power_stats                 u:object_r:debugfs_power_stats:s0
 
-genfscon debugfs /rmt_storage/rmts     u:object_r:qti_debugfs:s0
+genfscon debugfs /rmt_storage/rmts                  u:object_r:qti_debugfs:s0
 
-genfscon debugfs /msm_core             u:object_r:qti_debugfs:s0
+genfscon debugfs /msm_core                          u:object_r:qti_debugfs:s0
+
+genfscon sysfs /devices/soc/soc:qcom,cpubw          u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,mincpubw       u:object_r:sysfs_devfreq:s0
+genfscon sysfs /class/devfreq                       u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0    u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4    u:object_r:sysfs_devfreq:s0
+
+genfscon sysfs /devices/virtual/graphics/fb0        u:object_r:sysfs_graphics:s0

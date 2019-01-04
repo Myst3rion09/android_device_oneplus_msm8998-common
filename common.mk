@@ -140,7 +140,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     camera.device@1.0-impl \
     camera.device@3.2-impl \
-    Snap
+    GoogleCameraMod
 
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0 \
@@ -349,6 +349,10 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw
+
+# Playground
+PRODUCT_PACKAGES += \
+    Playground
 
 # Privapp Whitelist
 PRODUCT_COPY_FILES += \

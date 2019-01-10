@@ -182,7 +182,7 @@ PRODUCT_PACKAGES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    Doze
+    OnePlusDoze
 
 # DRM
 PRODUCT_PACKAGES += \

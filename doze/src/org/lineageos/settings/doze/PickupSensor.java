@@ -25,24 +25,33 @@ import android.hardware.SensorManager;
 import android.os.SystemClock;
 import android.util.Log;
 
-public class TiltSensor implements SensorEventListener {
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class PickupSensor implements SensorEventListener {
 
     private static final boolean DEBUG = false;
-    private static final String TAG = "TiltSensor";
+    private static final String TAG = "PickupSensor";
 
-    private static final int BATCH_LATENCY_IN_MS = 100;
     private static final int MIN_PULSE_INTERVAL_MS = 2500;
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private Context mContext;
+    private ExecutorService mExecutorService;
 
     private long mEntryTimestamp;
 
-    public TiltSensor(Context context) {
+    public PickupSensor(Context context) {
         mContext = context;
         mSensorManager = mContext.getSystemService(SensorManager.class);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
+        mSensor = Utils.getSensor(mSensorManager, "oneplus.sensor.pickup");
+        mExecutorService = Executors.newSingleThreadExecutor();
+    }
+
+    private Future<?> submit(Runnable runnable) {
+        return mExecutorService.submit(runnable);
     }
 
     @Override
@@ -52,9 +61,9 @@ public class TiltSensor implements SensorEventListener {
         long delta = SystemClock.elapsedRealtime() - mEntryTimestamp;
         if (delta < MIN_PULSE_INTERVAL_MS) {
             return;
-        } else {
-            mEntryTimestamp = SystemClock.elapsedRealtime();
         }
+
+        mEntryTimestamp = SystemClock.elapsedRealtime();
 
         if (event.values[0] == 1) {
             Utils.launchDozePulse(mContext);
@@ -68,13 +77,17 @@ public class TiltSensor implements SensorEventListener {
 
     protected void enable() {
         if (DEBUG) Log.d(TAG, "Enabling");
-        mSensorManager.registerListener(this, mSensor,
-                SensorManager.SENSOR_DELAY_NORMAL, BATCH_LATENCY_IN_MS * 1000);
-        mEntryTimestamp = SystemClock.elapsedRealtime();
+        submit(() -> {
+            mEntryTimestamp = SystemClock.elapsedRealtime();
+            mSensorManager.registerListener(this, mSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        });
     }
 
     protected void disable() {
         if (DEBUG) Log.d(TAG, "Disabling");
-        mSensorManager.unregisterListener(this, mSensor);
+        submit(() -> {
+            mSensorManager.unregisterListener(this, mSensor);
+        });
     }
 }

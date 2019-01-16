@@ -31,7 +31,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.dirac.acs.controller=qem \
     ro.dirac.acs.storeSettings=1 \
     ro.dirac.ignore_error=1 \
-    tunnel.audio.encode=true
+    tunnel.audio.encode=true \
+    persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 
 # Audio new
 PRODUCT_PROPERTY_OVERRIDES += \

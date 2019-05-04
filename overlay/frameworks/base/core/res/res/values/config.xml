@@ -644,10 +644,6 @@
          Must be in the range specified by minimum and maximum. -->
     <integer name="config_screenBrightnessSettingDefault">98</integer>
 
-    <!-- Flag specifying capacitive button brightness -->
-    <bool name="config_button_brightness_support">true</bool>
-    <integer name="config_button_brightness_default">255</integer>
-
     <!-- Default value for led color when battery is low on charge -->
     <integer name="config_notificationsBatteryLowARGB">0xFFFF0000</integer>
 

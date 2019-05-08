@@ -193,8 +193,7 @@ PRODUCT_PACKAGES += \
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service \
-    fingerprintd \
-    OneplusPocketMode
+    fingerprintd
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
@@ -426,20 +425,12 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service \
     thermal.msm8998
 
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msm8998
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
 # Vendor properties
 -include $(LOCAL_PATH)/vendor_prop.mk
-
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2019-04-01
 
 # Verity
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
@@ -497,5 +488,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
-# Inherit from oppo-common
-$(call inherit-product, device/oppo/common/common.mk)
+# Inherit from oneplus-common
+$(call inherit-product, device/oneplus/common/common.mk)
